@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Radar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Background glow elements -->
+    <div class="glow-bg glow-purple"></div>
+    <div class="glow-bg glow-blue"></div>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-logo">
+                    <!-- Custom SVG representing cloud data storage -->
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M48 24C48 15.16 40.84 8 32 8C25.32 8 19.64 12.08 17.24 17.92C10.88 18.96 6 24.44 6 31C6 38.16 11.84 44 19 44H47C53.64 44 59 38.64 59 32C59 25.8 54.28 24.52 48 24Z" fill="url(#cloudGrad)" />
+                        <rect x="24" y="32" width="16" height="4" rx="2" fill="#FFFFFF" opacity="0.8" />
+                        <rect x="20" y="38" width="24" height="4" rx="2" fill="#FFFFFF" opacity="0.6" />
+                        <defs>
+                            <linearGradient id="cloudGrad" x1="6" y1="8" x2="59" y2="44" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3b82f6" />
+                                <stop offset="1" stop-color="#8b5cf6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>BigQuery Release Radar</h1>
+                    <p>Track, filter, and share Google BigQuery updates instantly</p>
+                </div>
+            </div>
+            
+            <button id="refreshBtn" class="glass-btn btn-refresh" title="Refresh Release Notes">
+                <svg id="refreshIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                </svg>
+                <span>Refresh</span>
+            </button>
+        </header>
+
+        <!-- Controls Section -->
+        <section class="control-panel glass-panel">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search release notes by keywords...">
+            </div>
+            <div class="filter-tags" id="filterTags">
+                <button class="tag-btn active" data-filter="all">All Updates</button>
+                <button class="tag-btn" data-filter="Feature">Features</button>
+                <button class="tag-btn" data-filter="Bug Fix">Bug Fixes</button>
+                <button class="tag-btn" data-filter="Deprecated">Deprecations</button>
+                <button class="tag-btn" data-filter="Changed">Changes</button>
+                <button class="tag-btn" data-filter="Note">Notes</button>
+            </div>
+        </section>
+
+        <!-- Releases Grid -->
+        <main class="releases-wrapper">
+            <!-- Loading Indicator -->
+            <div id="loadingState" class="loading-state">
+                <div class="radar-spinner">
+                    <div class="circle circle-1"></div>
+                    <div class="circle circle-2"></div>
+                    <div class="circle circle-3"></div>
+                </div>
+                <p>Scanning BigQuery Release Feed...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state hidden">
+                <div class="error-icon">⚠️</div>
+                <h3>Failed to load release notes</h3>
+                <p id="errorMessage">Please check your internet connection and try again.</p>
+                <button id="retryBtn" class="glass-btn btn-retry">Retry Fetch</button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">🔍</div>
+                <h3>No matching release notes found</h3>
+                <p>Try adjusting your search keywords or category filters.</p>
+            </div>
+
+            <!-- Cards Container -->
+            <div id="releasesContainer" class="releases-grid">
+                <!-- Dynamically populated cards will go here -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>BigQuery Release Radar &copy; 2026. Data fetched in real-time from official Google Cloud feeds.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript script references -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
