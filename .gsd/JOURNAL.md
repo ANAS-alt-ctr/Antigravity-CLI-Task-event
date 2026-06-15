@@ -11,4 +11,6 @@
 - Created JavaScript controller `static/app.js` with dynamic rendering, keyword search, tag filtering, spinner actions, and pre-filled Twitter Web Intent sharing.
 - Created and executed `test_integration.py` to programmatically verify the application.
 - Added and committed `.gitignore` file to clean up version tracking.
+- Linked and pushed local repository to GitHub at `https://github.com/ANAS-alt-ctr/Antigravity-CLI-Task-event`.
+
 
